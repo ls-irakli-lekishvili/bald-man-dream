@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Denis hair reveal</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      div {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      div p {
+        font-size: 1.5rem;
+        width: 200px;
+        height: 200px;
+        background-color: blueviolet;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      img {
+        width: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Denis hair reveal in:</h1>
+    <div>
+      <p id="days">days</p>
+      <p id="hours">hours</p>
+      <p id="minutes">minutes</p>
+      <p id="seconds">seconds</p>
+    </div>
+    <img src="denis.png" alt="denis" />
+  </body>
+
+  <script>
+    const countDownDate = new Date("Feb 1, 2024 00:00:00").getTime();
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const minutes = document.getElementById("minutes");
+    const seconds = document.getElementById("seconds");
+
+    const x = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const daysTime = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hoursTime = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutesTime = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const secondsTime = Math.floor((distance % (1000 * 60)) / 1000);
+      days.innerHTML = `${daysTime} days`;
+      hours.innerHTML = `${hoursTime} hours`;
+      minutes.innerHTML = `${minutesTime} minutes`;
+      seconds.innerHTML = `${secondsTime} seconds`;
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+</html>
